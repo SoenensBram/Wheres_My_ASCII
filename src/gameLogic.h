@@ -16,8 +16,9 @@ namespace WhereIsAscii{
             int score = 0;
             std::vector<char> gameBoard;
             std::vector<char> tmp;
-            std::vector<int[4]> found;
-            unsigned int reveal[4];
+            bool tmp2;
+            std::vector<bool> found;
+            std::vector<unsigned int> reveal;
             std::ofstream scoreBoard;
             unsigned int config[3];
             char infill[50] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVW";

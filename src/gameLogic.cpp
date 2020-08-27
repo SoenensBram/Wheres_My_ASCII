@@ -65,38 +65,34 @@ namespace WhereIsAscii{
             return;
             break;
         }
-        // reveal[0] = config[1] +1;
-        // reveal[1] = config[1] +1;
-        // reveal[2] = config[1] +1;
-        // reveal[3] = config[1] +1;
+        for(unsigned int i = 0; i < config[2]*2; i++) reveal.push_back(config[1]);
 
         //genereren van speel veld
-        for(unsigned int i = 0; i < (pow(config[1], 2)/2); i++){
-            gameBoard.push_back(infill[i]);
-        }
+        for(unsigned int i = 0; i < (pow(config[1], 2)/config[2]); i++) gameBoard.push_back(infill[i]);
+        for(unsigned int i = 0; i < (pow(config[1], 2)*2); i++) found.push_back(false);
         tmp = gameBoard;
-        gameBoard.insert(gameBoard.end(), tmp.begin(), tmp.end());
+        for(unsigned int i = 0; i<config[2]; i++) gameBoard.insert(gameBoard.end(), tmp.begin(), tmp.end());
+        srand((unsigned int)time(NULL));
         random_shuffle(gameBoard.begin(), gameBoard.end());
 
         gaming = true;
         while(gaming){ 
-            reveal[0] = config[1] +1;
-            reveal[1] = config[1] +1;
-            reveal[2] = config[1] +1;
-            reveal[3] = config[1] +1;
             //tekenen van matrix
+            for(unsigned int i = 0; i < config[2]; i++){
+                drawMatrix();
+                std::cout << "X:";
+                std::cin >> reveal.at(i);
+                std::cout << "Y:";
+                std::cin >> reveal.at(i+ config[2]);
+            }
             drawMatrix();
-            std::cout << "X:";
-            std::cin >> reveal[0];
-            std::cout << "Y:";
-            std::cin >> reveal[1];
-            drawMatrix();
-            std::cout << "X:";
-            std::cin >> reveal[2];
-            std::cout << "Y:";
-            std::cin >> reveal[3];
-            drawMatrix();
-            if(gameBoard.at(reveal[0]*config[2]+reveal[1]) == gameBoard.at(reveal[2]*config[2]+reveal[3])) found.push_back({reveal[0],reveal[1],reveal[2],reveal[3]});
+            tmp2 = false;
+            for(unsigned int i = 1; i < config[2]; i++) tmp2 += gameBoard.at(reveal.at(0)*config[1]+reveal.at(config[2])) == gameBoard.at(reveal.at(i)*config[1]+reveal.at(i+ config[2]));
+            if(tmp2) for(unsigned int i = 0; i < config[2]; i++) if(tmp2) found.at(reveal.at(i)*config[1]+reveal.at(i+ config[2]))= true;
+            if(tmp2) std::cout << "Match found";
+            else std::cout << "Match not found";
+            std::cin.get();
+            for(unsigned int i = 0; i < config[2]*2; i++)reveal.at(i) = config[1];
         }
         
 
@@ -104,7 +100,8 @@ namespace WhereIsAscii{
         // for(unsigned int i =0; i<(50*dificulty); i++){
         //     srand((unsigned int)time(NULL));
         //     generatedWords = wordList.at(rand() % wordList.size());
-        //     startTime = clock();
+        //     startTime = clock();gameBoard.insert(gameBoard.end(), tmp.begin(), tmp.end());
+        
         //     std::cout << generatedWords << std::endl;
         //     std::cin >> typedWords;
         //     score -= (clock()-startTime);
@@ -123,14 +120,15 @@ namespace WhereIsAscii{
     }
 
     void gameLogic::drawMatrix(void){
-                    std::cout << std::endl << " ";
+            std::cout << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << std::endl << " ";
             for(unsigned int k = 0; k < config[1]; k++) std::cout << " " << k << " ";
             std::cout << std::endl;
             for(unsigned int i = 0; i < config[1]; i++){
                 std::cout << i;
                 for(unsigned int j = 0; j < config[1]; j++){
-                    
-                    if(reveal[0] == i && reveal[1] == j || reveal[2] == i && reveal[3] ==j) std::cout << " " << gameBoard.at(i*config[2]+j) << " ";
+                    bool tmp3 = false;
+                    for(unsigned int m = 0; m < config[2]; m++) tmp3 += reveal.at(m) == i && reveal.at(m + config[2]) == j;
+                    if(tmp3 || found.at(i*config[1]+j)) std::cout << " " << gameBoard.at(i*config[1]+j) << " ";
                     else std::cout << " ? "; 
                 }
                 std::cout << std::endl;
