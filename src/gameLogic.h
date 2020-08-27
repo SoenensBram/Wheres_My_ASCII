@@ -8,13 +8,18 @@ namespace WhereIsAscii{
         public: 
             gameLogic(void);
         private:
+            void drawMatrix(void);
+            bool gaming = false;
             std::string playerName;
-            std::string word;
-            std::string generatedWords, typedWords;
             clock_t startTime;
             unsigned int dificulty;
             int score = 0;
-            std::vector<char> letterList;
+            std::vector<char> gameBoard;
+            std::vector<char> tmp;
+            std::vector<int[4]> found;
+            unsigned int reveal[4];
             std::ofstream scoreBoard;
+            unsigned int config[3];
+            char infill[50] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVW";
     };  
 };
