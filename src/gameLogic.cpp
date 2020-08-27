@@ -10,20 +10,36 @@ namespace WhereIsAscii{
         //Logon and setup
         std::cout << "Player Name: ";
         std::cin >> playerName;
-        std::cout << "1 (easy), 2 (normal) and 3 (hard) are valid options" << std::endl << "Dificulty: ";
+        std::cout << "From 1 to 8 are valid options" << std::endl << "Dificulty: ";
         std::cin >> dificulty;
         switch (dificulty){
         case 1:
-            wordData.open("./files/wordsEasy.txt");
+            //placeholder;
             break;
         case 2:
-            wordData.open("./files/wordsNormal.txt");
+            //placeholder;
             break;
         case 3:
-            wordData.open("./files/wordsHard.txt");
+            //placeholder;
+            break;
+        case 4:
+            //placeholder;
+            break;
+        case 5:
+            //placeholder;
+            break;
+        case 6:
+            //placeholder;
+            break;
+        case 7:
+            //placeholder;
+            break;
+        case 8:
+            //placeholder;
             break;
         default:
             std::cout << "Enter a valid option!";
+            return;
             break;
         }
 
@@ -32,16 +48,6 @@ namespace WhereIsAscii{
         if (!scoreBoard){
             std::cerr << "Unable to acces files, scoreboard";
             exit(1);
-        }
-
-        if (!wordData){
-            std::cerr << "Unable to acces files, Word data";
-            exit(1);
-        }
-
-        //Data ingest
-        while(wordData >> word){
-            wordList.push_back(word);
         }
 
         //game implementatie

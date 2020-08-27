@@ -14,8 +14,7 @@ namespace WhereIsAscii{
             clock_t startTime;
             unsigned int dificulty;
             int score = 0;
-            std::vector<std::string> wordList;
-            std::ifstream wordData;
+            std::vector<char> letterList;
             std::ofstream scoreBoard;
     };  
 };

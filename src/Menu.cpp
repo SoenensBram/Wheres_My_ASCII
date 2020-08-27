@@ -6,7 +6,7 @@
 namespace WhereIsAscii{
     Menu::Menu(void){
         //Welcom screen
-        std::cout << "Welcome To WordBlaster" << std::endl <<"0. To Quit" << std::endl << "1. ScoreBoard" << std::endl << "2. Wordblaster" << std::endl;
+        std::cout << "Welcome To WordBlaster" << std::endl <<"0. To Quit" << std::endl << "1. ScoreBoard" << std::endl << "2. Where Is My ASCII" << std::endl;
         std::cin >> select;
 
         std::ifstream scoreBoard;
